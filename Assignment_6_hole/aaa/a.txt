@@ -1,0 +1,40 @@
+
+        printf("Content of file are:");
+//chnage location
+        int status;
+        status = chdir(dir_name);
+        if(status == -1)
+        {
+                printf("Check Directory Path or Directory not present\n");
+                return -1;
+        }
+
+int file_size=10; //bytes
+char name_large[200];
+
+        while((entry = readdir(dir)) != NULL)
+        {
+                //printf("%s : ",entry->d_name);
+                if (stat(entry->d_name, &buffer) < 0)
+                {
+                printf("Error while retriving statistics of file\n");
+                return -1;
+                }
+                //check file type
+                if (S_ISREG(buffer.st_mode))
+                {
+                        if((int)buffer.st_size>file_size)
+                        {
+                                printf("\nFile name with size larger then 10 byte: %s\n",entry->d_name);
+                        }
+
+                }
+        }
+
+
+
+}
+
+
+root@ubuntu:/work/ssayyad/Assignment_6_hole#
+root@
